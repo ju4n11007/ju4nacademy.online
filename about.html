@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ju4nacademy · Acerca de</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/academyju4n.png" />
+    <link rel="apple-touch-icon" href="imagenes/academyju4n.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img" />
+                    ju4nacademy
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="cursos.html">Cursos</a>
+                    <a href="about.html" class="active">Acerca de</a>
+                    <a href="contact.html">Contacto</a>
+                    <button class="btn-login" onclick="window.location.href='contact.html'">Iniciar sesión</button>
+                </div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===== HERO ABOUT ===== -->
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-content">
+                    <span class="hero-badge">👨‍💻 Conóceme</span>
+                    <h1 class="page-title">Acerca de <span class="gradient-text">ju4nacademy</span></h1>
+                    <p class="page-subtitle">Mi misión es compartir conocimiento en informática de forma gratuita y accesible para todos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MISIÓN Y VISIÓN ===== -->
+        <section class="about-mission">
+            <div class="container">
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <div class="mission-icon">🎯</div>
+                        <h3>Misión</h3>
+                        <p>Democratizar el acceso a la educación en tecnología, ofreciendo cursos de calidad completamente gratuitos para hispanohablantes.</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="mission-icon">👁️</div>
+                        <h3>Visión</h3>
+                        <p>Ser la plataforma de referencia en educación tecnológica gratuita en español, formando a miles de personas en todo el mundo.</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="mission-icon">💎</div>
+                        <h3>Valores</h3>
+                        <p>Accesibilidad, calidad, comunidad y pasión por la enseñanza. Todo el contenido es creado con dedicación y experiencia real.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HISTORIA ===== -->
+        <section class="about-story">
+            <div class="container">
+                <div class="story-grid">
+                    <div class="story-image">
+                        <div class="story-avatar">🚀</div>
+                    </div>
+                    <div class="story-content">
+                        <h2>Mi <span class="gradient-text">historia</span></h2>
+                        <p>Soy un apasionado de la informática que aprendió de forma autodidacta. Empecé reparando computadoras por hobby y poco a poco fui profundizando en desarrollo web, seguridad y optimización de sistemas.</p>
+                        <p>Creé <strong>ju4nacademy</strong> para compartir todo lo que he aprendido con quienes están empezando. Cada curso está diseñado con ejemplos prácticos y material descargable para que puedas aprender a tu ritmo.</p>
+                        <div class="story-stats">
+                            <div class="story-stat">
+                                <span class="stat-number">5+</span>
+                                <span class="stat-label">Años de experiencia</span>
+                            </div>
+                            <div class="story-stat">
+                                <span class="stat-number">7+</span>
+                                <span class="stat-label">Cursos creados</span>
+                            </div>
+                            <div class="story-stat">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Gratis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EQUIPO ===== -->
+        <section class="about-team">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Mi <span class="gradient-text">equipo</span></h2>
+                        <p class="section-sub">Por ahora soy yo solo, pero con el apoyo de la comunidad.</p>
+                    </div>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">👨‍💻</div>
+                        <h3>Juan</h3>
+                        <p>Fundador y creador de contenido</p>
+                        <span class="team-tag">🔧 Reparación</span>
+                        <span class="team-tag">💻 Desarrollo</span>
+                        <span class="team-tag">🔒 Seguridad</span>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">🤖</div>
+                        <h3>AI Assistant</h3>
+                        <p>Asistente virtual para consultas</p>
+                        <span class="team-tag">💬 Soporte</span>
+                        <span class="team-tag">📚 Guías</span>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">🌐</div>
+                        <h3>Comunidad</h3>
+                        <p>Estudiantes y colaboradores</p>
+                        <span class="team-tag">🤝 Colaboración</span>
+                        <span class="team-tag">💡 Feedback</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img" />
+                        ju4nacademy
+                    </a>
+                    <p>Educación en informática para todos, completamente gratis.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Navegación</h4>
+                        <a href="index.html">Inicio</a>
+                        <a href="cursos.html">Cursos</a>
+                        <a href="about.html">Acerca de</a>
+                        <a href="contact.html">Contacto</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Recursos</h4>
+                        <a href="https://ju4nstudio.online" target="_blank">CV Personal</a>
+                        <a href="#">Políticas de uso</a>
+                        <a href="#">Preguntas frecuentes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© Copyright ju4nacademy 2026 · Todos los cursos son gratuitos</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

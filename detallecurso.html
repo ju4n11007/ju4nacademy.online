@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ju4nacademy · Detalle del curso</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/academyju4n.png">
+    <link rel="apple-touch-icon" href="imagenes/academyju4n.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img">
+                    ju4nacademy
+                </a>
+                <div class="nav-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="cursos.html">Cursos</a>
+                    <a href="about.html">Acerca de</a>
+                    <a href="contact.html">Contacto</a>
+                    <button class="btn-login" onclick="window.location.href='contact.html'">Iniciar sesión</button>
+                </div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===== DETALLE DEL CURSO ===== -->
+        <section class="course-detail-section">
+            <div class="container">
+                <div id="course-detail">
+
+                    <!-- ===== CABECERA DEL CURSO ===== -->
+                    <div class="course-header">
+                        <div class="course-header-image" id="course-image">
+                            <!-- Cargado desde JavaScript -->
+                        </div>
+                        <div class="course-header-info">
+                            <div class="course-badges">
+                                <span class="badge-free">🎓 Gratis</span>
+                                <span class="badge-category" id="course-category">Informática</span>
+                            </div>
+                            <h1 id="course-title">Nombre del curso</h1>
+                            <p class="course-description" id="course-description">Descripción detallada del curso.</p>
+                            <div class="course-meta-detail">
+                                <div class="meta-item">
+                                    <span class="meta-icon">🎥</span>
+                                    <span class="meta-text" id="course-videos">0 videos</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-icon">📄</span>
+                                    <span class="meta-text" id="course-pdfs">0 PDFs</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-icon">🖼️</span>
+                                    <span class="meta-text" id="course-images">0 imágenes</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-icon">⏱️</span>
+                                    <span class="meta-text" id="course-duration">N/A</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-icon">📊</span>
+                                    <span class="meta-text" id="course-level">Todos los niveles</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <button class="btn-primary btn-start" onclick="alert('🎓 Curso gratuito. ¡Comienza a aprender ahora!')">
+                                    🎓 Comenzar curso
+                                </button>
+                                <button class="btn-secondary btn-download" onclick="alert('📄 Descargando materiales del curso...')">
+                                    📥 Descargar materiales
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== MÓDULOS / LECCIONES ===== -->
+                    <div class="course-modules-section">
+                        <h2 class="section-title">Contenido del <span class="gradient-text">curso</span></h2>
+                        <p class="section-sub">Todo el material disponible para descargar y estudiar.</p>
+                        <div id="course-modules" class="modules-container">
+                            <!-- Cargado desde JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- ===== RECURSOS ADICIONALES ===== -->
+                    <div class="course-resources-section">
+                        <h2 class="section-title">📦 Recursos <span class="gradient-text">descargables</span></h2>
+                        <p class="section-sub">Material complementario para profundizar en el aprendizaje.</p>
+                        <div id="course-resources" class="resources-grid">
+                            <!-- Cargado desde JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- ===== INSCRIPCIÓN GRATUITA ===== -->
+                    <div class="course-enroll">
+                        <div class="enroll-box">
+                            <div class="enroll-icon">🎓</div>
+                            <h3>¿Listo para aprender?</h3>
+                            <p>Accede a todo el contenido del curso <strong>completamente gratis</strong>. Sin tarjeta de crédito ni compromisos.</p>
+                            <div class="enroll-buttons">
+                                <button class="btn-primary btn-enroll" onclick="alert('✅ Te has inscrito correctamente. ¡Comienza a aprender!')">
+                                    🚀 Inscribirme gratis
+                                </button>
+                                <a href="cursos.html" class="btn-outline btn-back">← Volver a cursos</a>
+                            </div>
+                            <span class="enroll-note">Acceso inmediato · Sin tarjeta de crédito</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img">
+                        ju4nacademy
+                    </a>
+                    <p>Educación en informática para todos, completamente gratis.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Navegación</h4>
+                        <a href="index.html">Inicio</a>
+                        <a href="cursos.html">Cursos</a>
+                        <a href="about.html">Acerca de</a>
+                        <a href="contact.html">Contacto</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Recursos</h4>
+                        <a href="https://ju4nstudio.online" target="_blank">CV Personal</a>
+                        <a href="#">Políticas de uso</a>
+                        <a href="#">Preguntas frecuentes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© Copyright ju4nacademy 2026 · Todos los cursos son gratuitos</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

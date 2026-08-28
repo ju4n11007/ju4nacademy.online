@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ju4nacademy · Cursos Gratis</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/academyju4n.png">
+    <link rel="apple-touch-icon" href="imagenes/academyju4n.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img">
+                    ju4nacademy
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="active">Inicio</a>
+                    <a href="cursos.html">Cursos</a>
+                    <a href="about.html">Acerca de</a>
+                    <a href="contact.html">Contacto</a>
+                    <button class="btn-login" onclick="window.location.href='contact.html'">Iniciar sesión</button>
+                </div>
+                <button class="menu-toggle" id="menuToggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <span class="hero-badge">🎓 100% Gratis</span>
+                        <h1 class="hero-title">Aprende <span class="gradient-text">informática</span> desde cero</h1>
+                        <p class="hero-description">Diagnóstico, reparación, desarrollo web, seguridad y más. Todo completamente gratis con material descargable.</p>
+                        <div class="hero-buttons">
+                            <button class="btn-primary" onclick="window.location.href='cursos.html'">Explorar cursos</button>
+                            <button class="btn-secondary" onclick="window.location.href='about.html'">Conoce más</button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">7+</span>
+                                <span class="stat-label">Cursos completos</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Gratis</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">24/7</span>
+                                <span class="stat-label">Acceso</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="hero-illustration minimalista">
+                            <!-- Icono minimalista -->
+                            <div class="minimal-icon">
+                                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="60" cy="60" r="55" stroke="url(#grad)" stroke-width="2" opacity="0.15"/>
+                                    <circle cx="60" cy="60" r="45" stroke="url(#grad)" stroke-width="2" opacity="0.15"/>
+                                    <rect x="35" y="45" width="50" height="30" rx="4" stroke="url(#grad)" stroke-width="2"/>
+                                    <path d="M50 75 L50 85 L70 85 L70 75" stroke="url(#grad)" stroke-width="2"/>
+                                    <line x1="45" y1="85" x2="75" y2="85" stroke="url(#grad)" stroke-width="2"/>
+                                    <defs>
+                                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#00d4ff"/>
+                                            <stop offset="100%" stop-color="#7c3aed"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <!-- Badges minimalistas -->
+                            <div class="badge-minimal top">
+                                <span>📚</span>
+                            </div>
+                            <div class="badge-minimal bottom">
+                                <span>🔧</span>
+                            </div>
+                            <!-- Líneas decorativas -->
+                            <div class="line-deco line-1"></div>
+                            <div class="line-deco line-2"></div>
+                            <div class="line-deco line-3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CARACTERÍSTICAS ===== -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎥</div>
+                        <h3>Videos HD</h3>
+                        <p>Lecciones en alta definición con ejemplos prácticos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>PDFs descargables</h3>
+                        <p>Material de estudio completo para aprender a tu ritmo.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🖼️</div>
+                        <h3>Imágenes y diagramas</h3>
+                        <p>Aprendizaje visual con diagramas explicativos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍🏫</div>
+                        <h3>Asesoría personalizada</h3>
+                        <p>Guías basadas en mi experiencia autodidacta.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CURSOS DESTACADOS ===== -->
+        <section class="featured-courses">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <h2 class="section-title">Cursos <span class="gradient-text">destacados</span></h2>
+                        <p class="section-sub">Todos gratuitos con material completo y práctico.</p>
+                    </div>
+                    <button class="btn-outline" onclick="window.location.href='cursos.html'">Ver todos →</button>
+                </div>
+                <div id="featured-courses" class="courses-grid-featured">
+                    <!-- Cargado desde JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SOBRE MÍ ===== -->
+        <section class="about-me">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-avatar-wrapper">
+                        <div class="about-avatar">👨‍💻</div>
+                    </div>
+                    <div class="about-content">
+                        <h2>Hola, soy el fundador de <span class="gradient-text">ju4nacademy</span></h2>
+                        <p>Comparto mi experiencia en informática, reparación, desarrollo y seguridad. Todo lo que sé lo aprendí de forma autodidacta y ahora quiero ayudarte a ti también.</p>
+                        <div class="about-tags">
+                            <span class="tag">🔧 Reparación</span>
+                            <span class="tag">🚀 Optimización</span>
+                            <span class="tag">🌐 Desarrollo Web</span>
+                            <span class="tag">🔒 Seguridad</span>
+                            <span class="tag">🎬 Edición de Video</span>
+                        </div>
+                        <a href="https://ju4nstudio.online" target="_blank" class="btn-cv">
+                            📄 Ver mi CV personal
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img">
+                        ju4nacademy
+                    </a>
+                    <p>Educación en informática para todos, completamente gratis.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Navegación</h4>
+                        <a href="index.html">Inicio</a>
+                        <a href="cursos.html">Cursos</a>
+                        <a href="about.html">Acerca de</a>
+                        <a href="contact.html">Contacto</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Recursos</h4>
+                        <a href="https://ju4nstudio.online" target="_blank">CV Personal</a>
+                        <a href="#">Políticas de uso</a>
+                        <a href="#">Preguntas frecuentes</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© Copyright ju4nacademy 2026 · Todos los cursos son gratuitos</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
