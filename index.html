@@ -1,209 +1,146 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="es" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ju4nacademy · Cursos Gratis</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/academyju4n.png">
-    <link rel="apple-touch-icon" href="imagenes/academyju4n.png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ju4nacademy · Informática gratis, desde cero</title>
+<meta name="description" content="Cursos gratuitos de reparación, optimización, desarrollo web, seguridad y edición de video. Videos, PDFs y diagramas, hechos por un autodidacta.">
+<link rel="canonical" href="https://ju4nacademy.online/">
+<meta property="og:title" content="ju4nacademy · Informática gratis, desde cero">
+<meta property="og:description" content="Aprende reparación, web, seguridad y video. Todo gratis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ju4nacademy.online/">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b0d10'/><text x='5' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23c6ff3d'>j4</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: light)').matches)document.documentElement.dataset.theme='light'}catch(e){}</script>
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ju4nacademy","url":"https://ju4nacademy.online/","description":"Cursos gratuitos de informática en español.","isAccessibleForFree":true}</script>
 </head>
 <body>
+<a class="skip" href="#main">Saltar al contenido</a>
 
-    <!-- ===== NAVBAR ===== -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img">
-                    ju4nacademy
-                </a>
-                <div class="nav-links">
-                    <a href="index.html" class="active">Inicio</a>
-                    <a href="cursos.html">Cursos</a>
-                    <a href="about.html">Acerca de</a>
-                    <a href="contact.html">Contacto</a>
-                    <button class="btn-login" onclick="window.location.href='contact.html'">Iniciar sesión</button>
-                </div>
-                <button class="menu-toggle" id="menuToggle">☰</button>
-            </nav>
-        </div>
-    </header>
+<header class="top">
+  <a class="logo" href="#inicio" aria-label="ju4nacademy, inicio"><span>ju4n</span>/academy</a>
+  <button class="icon-btn menu" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">☰</button>
+  <nav id="nav" aria-label="Principal">
+    <a href="#ruta">Tu ruta</a>
+    <a href="#cursos">Cursos</a>
+    <a href="#autor">Autor</a>
+    <a href="#contacto">Contacto</a>
+    <button class="icon-btn" id="theme" aria-label="Cambiar tema claro/oscuro">◐</button>
+  </nav>
+</header>
 
-    <main>
+<main id="main">
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <p class="tag">// gratis · sin registro · en español</p>
+    <h1>Informática que se aprende <em>con las manos.</em></h1>
+    <p class="lead">Reparación, web, seguridad y video. Cursos hechos por un autodidacta, con videos, PDFs y diagramas. Sin relleno, sin costo.</p>
+    <div class="cta">
+      <a class="btn primary" href="#cursos">Ver cursos</a>
+      <a class="btn" href="#ruta">Armar mi ruta</a>
+    </div>
+    <div class="term glow" role="img" aria-label="Terminal simulada: ju4n learn --gratis">
+      <div class="term-bar"><i></i><i></i><i></i><span>~/ju4nacademy</span></div>
+      <pre id="typed" aria-hidden="true"></pre>
+      <noscript><pre>$ ju4n learn --gratis</pre></noscript>
+    </div>
+    <dl class="stats">
+      <div><dt>Cursos</dt><dd>7+</dd></div>
+      <div><dt>Costo</dt><dd>$0</dd></div>
+      <div><dt>Acceso</dt><dd>24/7</dd></div>
+    </dl>
+  </section>
 
-        <!-- ===== HERO ===== -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-content">
-                        <span class="hero-badge">🎓 100% Gratis</span>
-                        <h1 class="hero-title">Aprende <span class="gradient-text">informática</span> desde cero</h1>
-                        <p class="hero-description">Diagnóstico, reparación, desarrollo web, seguridad y más. Todo completamente gratis con material descargable.</p>
-                        <div class="hero-buttons">
-                            <button class="btn-primary" onclick="window.location.href='cursos.html'">Explorar cursos</button>
-                            <button class="btn-secondary" onclick="window.location.href='about.html'">Conoce más</button>
-                        </div>
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <span class="stat-number">7+</span>
-                                <span class="stat-label">Cursos completos</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">100%</span>
-                                <span class="stat-label">Gratis</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-number">24/7</span>
-                                <span class="stat-label">Acceso</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <div class="hero-illustration minimalista">
-                            <!-- Icono minimalista -->
-                            <div class="minimal-icon">
-                                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="60" cy="60" r="55" stroke="url(#grad)" stroke-width="2" opacity="0.15"/>
-                                    <circle cx="60" cy="60" r="45" stroke="url(#grad)" stroke-width="2" opacity="0.15"/>
-                                    <rect x="35" y="45" width="50" height="30" rx="4" stroke="url(#grad)" stroke-width="2"/>
-                                    <path d="M50 75 L50 85 L70 85 L70 75" stroke="url(#grad)" stroke-width="2"/>
-                                    <line x1="45" y1="85" x2="75" y2="85" stroke="url(#grad)" stroke-width="2"/>
-                                    <defs>
-                                        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="#00d4ff"/>
-                                            <stop offset="100%" stop-color="#7c3aed"/>
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <!-- Badges minimalistas -->
-                            <div class="badge-minimal top">
-                                <span>📚</span>
-                            </div>
-                            <div class="badge-minimal bottom">
-                                <span>🔧</span>
-                            </div>
-                            <!-- Líneas decorativas -->
-                            <div class="line-deco line-1"></div>
-                            <div class="line-deco line-2"></div>
-                            <div class="line-deco line-3"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- PROPUESTA DE VALOR -->
+  <section class="split reveal" aria-labelledby="h-valor">
+    <h2 id="h-valor">Lo que hay.<br>Nada más.</h2>
+    <ol class="list">
+      <li><b>01 Video HD</b><span>Lecciones con ejemplos prácticos, para ver y repetir.</span></li>
+      <li><b>02 PDFs descargables</b><span>Material completo para estudiar a tu ritmo, offline.</span></li>
+      <li><b>03 Diagramas</b><span>Lo difícil, dibujado. Aprendizaje visual.</span></li>
+      <li><b>04 Guía real</b><span>Orientación basada en experiencia autodidacta, no en teoría de manual.</span></li>
+    </ol>
+  </section>
 
-        <!-- ===== CARACTERÍSTICAS ===== -->
-        <section class="features">
-            <div class="container">
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎥</div>
-                        <h3>Videos HD</h3>
-                        <p>Lecciones en alta definición con ejemplos prácticos.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📄</div>
-                        <h3>PDFs descargables</h3>
-                        <p>Material de estudio completo para aprender a tu ritmo.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🖼️</div>
-                        <h3>Imágenes y diagramas</h3>
-                        <p>Aprendizaje visual con diagramas explicativos.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">👨‍🏫</div>
-                        <h3>Asesoría personalizada</h3>
-                        <p>Guías basadas en mi experiencia autodidacta.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- INTERACTIVO -->
+  <section class="reveal" id="ruta" aria-labelledby="h-ruta">
+    <p class="tag">// interactivo</p>
+    <h2 id="h-ruta">¿Qué quieres lograr?</h2>
+    <div class="chips" role="radiogroup" aria-label="Objetivo"></div>
+    <div class="route glow" id="route" aria-live="polite"></div>
+  </section>
 
-        <!-- ===== CURSOS DESTACADOS ===== -->
-        <section class="featured-courses">
-            <div class="container">
-                <div class="section-header">
-                    <div>
-                        <h2 class="section-title">Cursos <span class="gradient-text">destacados</span></h2>
-                        <p class="section-sub">Todos gratuitos con material completo y práctico.</p>
-                    </div>
-                    <button class="btn-outline" onclick="window.location.href='cursos.html'">Ver todos →</button>
-                </div>
-                <div id="featured-courses" class="courses-grid-featured">
-                    <!-- Cargado desde JavaScript -->
-                </div>
-            </div>
-        </section>
+  <!-- CURSOS -->
+  <section class="reveal" id="cursos" aria-labelledby="h-cursos">
+    <p class="tag">// ls ./cursos</p>
+    <h2 id="h-cursos">Cursos</h2>
+    <div class="grid" id="grid"></div>
+  </section>
 
-        <!-- ===== SOBRE MÍ ===== -->
-        <section class="about-me">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-avatar-wrapper">
-                        <div class="about-avatar">👨‍💻</div>
-                    </div>
-                    <div class="about-content">
-                        <h2>Hola, soy el fundador de <span class="gradient-text">ju4nacademy</span></h2>
-                        <p>Comparto mi experiencia en informática, reparación, desarrollo y seguridad. Todo lo que sé lo aprendí de forma autodidacta y ahora quiero ayudarte a ti también.</p>
-                        <div class="about-tags">
-                            <span class="tag">🔧 Reparación</span>
-                            <span class="tag">🚀 Optimización</span>
-                            <span class="tag">🌐 Desarrollo Web</span>
-                            <span class="tag">🔒 Seguridad</span>
-                            <span class="tag">🎬 Edición de Video</span>
-                        </div>
-                        <a href="https://ju4nstudio.online" target="_blank" class="btn-cv">
-                            📄 Ver mi CV personal
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- AUTOR -->
+  <section class="split reveal" id="autor" aria-labelledby="h-autor">
+    <h2 id="h-autor">Hecho por<br>alguien que aprendió solo.</h2>
+    <div>
+      <p>Soy Juan, fundador de ju4nacademy. Todo lo que sé de informática lo aprendí por mi cuenta, y ahora lo comparto para que tú llegues más rápido.</p>
+      <p class="pills"><span>Reparación</span><span>Optimización</span><span>Desarrollo web</span><span>Seguridad</span><span>Edición de video</span></p>
+      <a class="btn" href="https://ju4nstudio.online" rel="noopener">Ver mi portafolio →</a>
+    </div>
+  </section>
 
-    </main>
+  <!-- CONTACTO -->
+  <section class="reveal" id="contacto" aria-labelledby="h-contacto">
+    <p class="tag">// contacto</p>
+    <h2 id="h-contacto">Escríbeme.</h2>
+    <form class="form glow" id="form" novalidate>
+      <label>Nombre
+        <input name="nombre" autocomplete="name" required minlength="2" maxlength="60">
+        <small class="err" aria-live="polite"></small>
+      </label>
+      <label>Tema
+        <select name="tema" required>
+          <option value="">Elige una opción</option>
+          <option>Duda sobre un curso</option>
+          <option>Sugerir un curso</option>
+          <option>Soporte técnico</option>
+          <option>Otro</option>
+        </select>
+        <small class="err" aria-live="polite"></small>
+      </label>
+      <label class="full">Mensaje
+        <textarea name="mensaje" rows="4" required minlength="10" maxlength="600"></textarea>
+        <small class="err" aria-live="polite"></small>
+      </label>
+      <input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn primary full" type="submit"><span class="spin" hidden></span><span class="lbl">Enviar mensaje</span></button>
+      <p class="status full" id="status" role="status"></p>
+    </form>
+  </section>
+</main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img">
-                        ju4nacademy
-                    </a>
-                    <p>Educación en informática para todos, completamente gratis.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4>Navegación</h4>
-                        <a href="index.html">Inicio</a>
-                        <a href="cursos.html">Cursos</a>
-                        <a href="about.html">Acerca de</a>
-                        <a href="contact.html">Contacto</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Recursos</h4>
-                        <a href="https://ju4nstudio.online" target="_blank">CV Personal</a>
-                        <a href="#">Políticas de uso</a>
-                        <a href="#">Preguntas frecuentes</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© Copyright ju4nacademy 2026 · Todos los cursos son gratuitos</span>
-            </div>
-        </div>
-    </footer>
+<footer>
+  <p><b>ju4n</b>/academy · Educación en informática, gratis.</p>
+  <p>© 2026 ju4nacademy</p>
+</footer>
 
-    <script src="script.js"></script>
+<!-- MINI-BOT -->
+<div class="bot" id="bot">
+  <section class="bot-panel glow" id="bot-panel" role="dialog" aria-label="Asistente de ju4nacademy" hidden>
+    <header><b>asistente.sh</b><button class="icon-btn" id="bot-x" aria-label="Cerrar chat">✕</button></header>
+    <div class="bot-log" id="bot-log" aria-live="polite"></div>
+    <div class="bot-quick" id="bot-quick"></div>
+    <form id="bot-form" autocomplete="off">
+      <input id="bot-in" placeholder="Pregunta algo…" aria-label="Tu pregunta" maxlength="200">
+      <button class="btn primary" aria-label="Enviar">→</button>
+    </form>
+  </section>
+  <button class="bot-fab" id="bot-fab" aria-expanded="false" aria-controls="bot-panel" aria-label="Abrir asistente">&gt;_</button>
+</div>
+
+<script src="app.js" defer></script>
 </body>
 </html>
