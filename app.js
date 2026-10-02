@@ -1,181 +1,510 @@
-/* ju4nacademy · app.js — JS ligero, sin dependencias */
-(() => {
-  'use strict';
+/* ===== VARIABLES Y CONFIGURACIÓN DE TEMA ===== */
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #12121a;
+    --bg-card: #161622;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --gradient-start: #3b82f6;
+    --gradient-end: #8b5cf6;
+    --radius: 12px;
+    --transition: all 0.25s ease;
+}
 
-  /* ===== CONFIGURACIÓN (edita aquí) ===== */
-  const CONFIG = {
-    instagram: 'ju4n_Tech.404',
-    // Opcional: endpoint tipo Formspree ("https://formspree.io/f/xxxx"). Vacío = el mensaje se copia y se abre Instagram.
-    formEndpoint: '',
-    // Opcional: tu proxy de IA (backend). NUNCA pongas una API key en este archivo.
-    botEndpoint: ''
-  };
-  const IG_URL = `https://ig.me/m/${CONFIG.instagram}`;
+[data-theme="light"] {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border-color: rgba(0, 0, 0, 0.1);
+}
 
-  /* ===== CONTENIDO (reemplaza por tus cursos reales) ===== */
-  const COURSES = [
-    { area: 'reparacion',   title: 'Diagnóstico y reparación de PC', desc: 'Detecta fallas de hardware y software y corrígelas paso a paso.', meta: 'video · pdf · diagramas', href: 'cursos.html' },
-    { area: 'optimizacion', title: 'Optimización de sistemas',       desc: 'Haz que un equipo lento vuelva a rendir.',                          meta: 'video · pdf',             href: 'cursos.html' },
-    { area: 'web',          title: 'Desarrollo web desde cero',      desc: 'HTML, CSS y JavaScript construyendo cosas reales.',                  meta: 'video · pdf · código',    href: 'cursos.html' },
-    { area: 'seguridad',    title: 'Seguridad informática básica',   desc: 'Protege tus cuentas, equipos y datos.',                              meta: 'video · pdf',             href: 'cursos.html' },
-    { area: 'video',        title: 'Edición de video',               desc: 'De material en bruto a un video terminado.',                         meta: 'video · pdf',             href: 'cursos.html' }
-  ];
-  const PATHS = {
-    reparacion:   { label: 'Arreglar mi PC',  cmd: 'ju4n fix --pc',      steps: ['Diagnóstico y reparación de PC', 'Optimización de sistemas', 'Seguridad informática básica'] },
-    web:          { label: 'Crear una web',   cmd: 'ju4n build --web',   steps: ['Desarrollo web desde cero', 'Seguridad informática básica'] },
-    seguridad:    { label: 'Protegerme',      cmd: 'ju4n protect --me',  steps: ['Seguridad informática básica', 'Optimización de sistemas'] },
-    video:        { label: 'Editar video',    cmd: 'ju4n edit --video',  steps: ['Edición de video', 'Optimización de sistemas'] }
-  };
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-  const $ = (s, r = document) => r.querySelector(s);
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const esc = t => { const d = document.createElement('div'); d.textContent = t; return d.innerHTML; };
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  /* ===== Tema claro/oscuro ===== */
-  $('#theme').addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
-    try { localStorage.setItem('theme', next); } catch (e) {}
-  });
+a {
+    color: inherit;
+    text-decoration: none;
+}
 
-  /* ===== Menú móvil ===== */
-  const menu = $('.menu'), nav = $('#nav');
-  menu.addEventListener('click', () => menu.setAttribute('aria-expanded', nav.classList.toggle('open')));
-  nav.addEventListener('click', e => { if (e.target.tagName === 'A') { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); } });
+/* ===== HEADER / TOP ===== */
+.top {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+}
 
-  /* ===== Terminal con tipeo ===== */
-  const lines = [
-    '$ ju4n learn --gratis',
-    '> reparación · optimización · web',
-    '> seguridad · edición de video',
-    '> sin registro. con PDFs. $0.'
-  ].join('\n');
-  const out = $('#typed');
-  if (reduced) out.textContent = lines;
-  else { let i = 0; (function t() { out.textContent = lines.slice(0, ++i); if (i < lines.length) setTimeout(t, 28); })(); }
+.top .logo {
+    font-weight: 800;
+    font-size: 1.2rem;
+}
 
-  /* ===== Borde lumínico que sigue al cursor ===== */
-  const glows = () => document.querySelectorAll('.glow');
-  document.addEventListener('pointermove', e => {
-    glows().forEach(el => {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty('--x', `${e.clientX - r.left}px`);
-      el.style.setProperty('--y', `${e.clientY - r.top}px`);
-    });
-  }, { passive: true });
+.top .logo span {
+    color: var(--gradient-start);
+}
 
-  /* ===== Reveal al hacer scroll ===== */
-  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+.top nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
-  /* ===== Cursos ===== */
-  $('#grid').innerHTML = COURSES.map(c => `
-    <a class="card glow" href="${c.href}" style="text-decoration:none;display:block">
-      <small>./${c.area}</small><h3>${esc(c.title)}</h3><p>${esc(c.desc)}</p><div class="meta">${esc(c.meta)}</div>
-    </a>`).join('');
+.top nav a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
 
-  /* ===== Ruta interactiva ===== */
-  const chips = $('.chips'), route = $('#route');
-  chips.innerHTML = Object.entries(PATHS).map(([k, p]) => `<button class="chip" role="radio" aria-checked="false" data-k="${k}">${esc(p.label)}</button>`).join('');
-  function showPath(k) {
-    const p = PATHS[k];
-    chips.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-checked', c.dataset.k === k));
-    route.innerHTML = `<span class="cmd">$ ${p.cmd}</span><ol>${p.steps.map(s => `<li>${esc(s)}</li>`).join('')}</ol>`;
-  }
-  chips.addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) showPath(b.dataset.k); });
-  route.innerHTML = '<span class="cmd">$</span> elige un objetivo para ver tu ruta sugerida…';
+.top nav a:hover {
+    color: var(--text-primary);
+}
 
-  /* ===== Formulario de contacto ===== */
-  const form = $('#form'), status = $('#status'), btn = form.querySelector('button[type=submit]');
-  const rules = {
-    nombre: v => v.trim().length >= 2 || 'Escribe tu nombre.',
-    tema: v => !!v || 'Elige un tema.',
-    mensaje: v => v.trim().length >= 10 || 'Cuéntame un poco más (mín. 10 caracteres).'
-  };
-  function validate(field) {
-    const ok = rules[field.name](field.value);
-    field.setAttribute('aria-invalid', ok !== true);
-    field.parentElement.querySelector('.err').textContent = ok === true ? '' : ok;
-    return ok === true;
-  }
-  form.querySelectorAll('input[name=nombre],select,textarea').forEach(f => f.addEventListener('blur', () => validate(f)));
+/* ===== BOTONES E ICONOS GENERALES ===== */
+.icon-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    if (form.web.value) return; // honeypot anti-bots
-    const fields = [...form.querySelectorAll('input[name=nombre],select,textarea')];
-    if (!fields.map(validate).every(Boolean)) { status.textContent = 'Revisa los campos marcados.'; return; }
+.menu {
+    display: none;
+}
 
-    const data = Object.fromEntries(new FormData(form));
-    const text = `Hola, soy ${data.nombre}. [${data.tema}] ${data.mensaje}`;
-    btn.disabled = true; btn.querySelector('.spin').hidden = false; btn.querySelector('.lbl').textContent = 'Enviando…';
-    status.textContent = '';
-    try {
-      if (CONFIG.formEndpoint) {
-        const r = await fetch(CONFIG.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
-        if (!r.ok) throw new Error('http');
-        status.textContent = '✓ Mensaje enviado. Te respondo pronto.';
-      } else {
-        await new Promise(r => setTimeout(r, 700));
-        try { await navigator.clipboard.writeText(text); } catch (_) {}
-        status.innerHTML = `✓ Mensaje listo y copiado. <a href="${IG_URL}" target="_blank" rel="noopener">Abrir Instagram y pegarlo →</a>`;
-      }
-      form.reset();
-    } catch (_) {
-      status.textContent = 'No se pudo enviar. Inténtalo de nuevo.';
-    } finally {
-      btn.disabled = false; btn.querySelector('.spin').hidden = true; btn.querySelector('.lbl').textContent = 'Enviar mensaje';
+.skip {
+    position: absolute;
+    left: -9999px;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    padding: 60px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tag {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--gradient-start);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lead {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 28px;
+}
+
+.cta {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.btn {
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-block;
+    text-align: center;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border: none;
+    color: #fff;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--gradient-start);
+}
+
+/* ===== TERMINAL SIMULADA ===== */
+.term {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.term-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.term-bar i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border-color);
+    display: inline-block;
+}
+
+.term pre {
+    color: var(--gradient-start);
+    white-space: pre-wrap;
+}
+
+/* ===== STATS ===== */
+.stats {
+    display: flex;
+    gap: 40px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 24px;
+}
+
+.stats dt {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.stats dd {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* ===== SECCIONES GENERALES Y SPLIT ===== */
+section {
+    padding: 60px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.list li b {
+    display: block;
+    color: var(--gradient-start);
+    font-size: 0.9rem;
+}
+
+.list li span {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ===== CHIPS Y RUTA INTERACTIVA (JS) ===== */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 8px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.chip[aria-checked="true"],
+.chip:hover {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    border-color: transparent;
+}
+
+.route {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-top: 16px;
+}
+
+.route .cmd {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--gradient-start);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.route ol {
+    padding-left: 20px;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ===== GRID DE CURSOS (INYECTADO POR JS) ===== */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gradient-start);
+}
+
+.card small {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--gradient-end);
+    font-size: 0.8rem;
+}
+
+.card h3 {
+    font-size: 1.15rem;
+    margin: 8px 0;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+}
+
+.card .meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+}
+
+/* ===== FORMULARIO DE CONTACTO ===== */
+.form {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.form .full {
+    grid-column: 1 / -1;
+}
+
+.form input,
+.form select,
+.form textarea {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: var(--text-primary);
+    outline: none;
+    font-family: inherit;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+    border-color: var(--gradient-start);
+}
+
+.hp {
+    display: none;
+}
+
+.err {
+    color: #ff5c5c;
+    font-size: 0.75rem;
+}
+
+.status {
+    font-size: 0.9rem;
+    color: var(--gradient-start);
+}
+
+/* ===== FOOTER Y MINI-BOT ===== */
+footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.bot-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.bot-panel {
+    position: fixed;
+    bottom: 85px;
+    right: 24px;
+    width: 320px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.bot-panel header {
+    background: var(--bg-secondary);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.bot-log {
+    padding: 16px;
+    max-height: 240px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.bot-quick {
+    padding: 0 16px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+#bot-form {
+    display: flex;
+    border-top: 1px solid var(--border-color);
+    padding: 8px;
+    background: var(--bg-secondary);
+}
+
+#bot-in {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    padding: 6px;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+.msg.me {
+    text-align: right;
+    color: var(--gradient-start);
+}
+
+.msg.bot {
+    text-align: left;
+    color: var(--text-secondary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px) {
+    .split, .form {
+        grid-template-columns: 1fr;
     }
-  });
-
-  /* ===== Mini-bot ===== */
-  const fab = $('#bot-fab'), panel = $('#bot-panel'), log = $('#bot-log'), quick = $('#bot-quick'), bform = $('#bot-form'), bin = $('#bot-in');
-  const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  const KB = [
-    { k: ['gratis', 'costo', 'precio', 'pagar', 'cuesta'], a: 'Todos los cursos son 100% gratuitos, sin tarjeta.' },
-    { k: ['curso', 'aprender', 'temas', 'que hay'], a: 'Hay cursos de reparación, optimización, desarrollo web, seguridad y edición de video. Mira la sección Cursos.' },
-    { k: ['material', 'pdf', 'video', 'descargar'], a: 'Cada curso incluye videos, PDFs descargables y diagramas.' },
-    { k: ['quien', 'autor', 'juan', 'fundador'], a: 'Lo creó Juan, autodidacta en informática. Puedes ver su portafolio en <a href="https://ju4nstudio.online" rel="noopener">ju4nstudio.online</a>.' },
-    { k: ['contacto', 'contactar', 'escribir', 'hablar', 'instagram', 'asesoria', 'ayuda'], a: `Escríbele desde el formulario de la página o por <a href="${IG_URL}" target="_blank" rel="noopener">Instagram</a>.` },
-    { k: ['hola', 'buenas', 'hey'], a: '¡Hola! Pregúntame por los cursos, el material o cómo contactar.' }
-  ];
-  const FALLBACK = `Eso no lo tengo claro. Mejor pregúntaselo directo por <a href="${IG_URL}" target="_blank" rel="noopener">Instagram</a>.`;
-
-  function say(html, who) {
-    const m = document.createElement('div');
-    m.className = `msg ${who}`; m.innerHTML = html;
-    log.appendChild(m); log.scrollTop = log.scrollHeight; return m;
-  }
-  async function reply(q) {
-    if (CONFIG.botEndpoint) { // modo IA real vía tu backend
-      try {
-        const r = await fetch(CONFIG.botEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q }) });
-        const j = await r.json(); return esc(j.reply || '').replace(/\n/g, '<br>') || FALLBACK;
-      } catch (_) { return FALLBACK; }
+    .hero h1 {
+        font-size: 2.2rem;
     }
-    const n = norm(q);
-    const hit = KB.find(x => x.k.some(w => n.includes(w)));
-    return hit ? hit.a : FALLBACK;
-  }
-  async function ask(q) {
-    q = q.trim(); if (!q) return;
-    say(esc(q), 'me');
-    const typing = say('…', 'bot');
-    const [ans] = await Promise.all([reply(q), new Promise(r => setTimeout(r, 450))]);
-    typing.innerHTML = ans; log.scrollTop = log.scrollHeight;
-  }
-  ['¿Es gratis?', '¿Qué cursos hay?', 'Contacto'].forEach(t => {
-    const b = document.createElement('button'); b.className = 'chip'; b.type = 'button'; b.textContent = t;
-    b.addEventListener('click', () => ask(t)); quick.appendChild(b);
-  });
-  bform.addEventListener('submit', e => { e.preventDefault(); ask(bin.value); bin.value = ''; });
-
-  let greeted = false;
-  function toggleBot(open) {
-    panel.hidden = !open; fab.setAttribute('aria-expanded', open);
-    if (open) { if (!greeted) { say('Hola, soy el asistente de ju4nacademy. ¿En qué te ayudo?', 'bot'); greeted = true; } bin.focus(); } else fab.focus();
-  }
-  fab.addEventListener('click', () => toggleBot(panel.hidden));
-  $('#bot-x').addEventListener('click', () => toggleBot(false));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) toggleBot(false); });
-})();
+    .top nav {
+        display: none;
+    }
+    .menu {
+        display: block;
+    }
+}
