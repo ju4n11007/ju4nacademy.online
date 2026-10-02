@@ -1,34 +1,35 @@
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ju4nacademy · Informática gratis, desde cero</title>
-<meta name="description" content="Cursos gratuitos de reparación, optimización, desarrollo web, seguridad y edición de video. Videos, PDFs y diagramas, hechos por un autodidacta.">
+<title>ju4nacademy · Cursos de informática gratis, desde cero</title>
+<meta name="description" content="Cursos gratuitos de reparación, optimización, desarrollo web, seguridad y edición de video, con videos, PDFs y diagramas. Hecho por Juan Bruna.">
 <link rel="canonical" href="https://ju4nacademy.online/">
-<meta property="og:title" content="ju4nacademy · Informática gratis, desde cero">
+<meta property="og:title" content="ju4nacademy · Cursos de informática gratis">
 <meta property="og:description" content="Aprende reparación, web, seguridad y video. Todo gratis.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ju4nacademy.online/">
-<meta name="theme-color" content="#0b0d10">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b0d10'/><text x='5' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23c6ff3d'>j4</text></svg>">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%233b4cf0'/><text x='5' y='23' font-family='monospace' font-size='18' font-weight='700' fill='white'>j4</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
-<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;else if(matchMedia('(prefers-color-scheme: light)').matches)document.documentElement.dataset.theme='light'}catch(e){}</script>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ju4nacademy","url":"https://ju4nacademy.online/","description":"Cursos gratuitos de informática en español.","isAccessibleForFree":true}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ju4nacademy","url":"https://ju4nacademy.online/","founder":{"@type":"Person","name":"Juan Bruna"},"isAccessibleForFree":true}</script>
 </head>
 <body>
 <a class="skip" href="#main">Saltar al contenido</a>
 
 <header class="top">
-  <a class="logo" href="#inicio" aria-label="ju4nacademy, inicio"><span>ju4n</span>/academy</a>
+  <a class="logo" href="#inicio" aria-label="ju4nacademy, inicio"><span>ju4n</span>academy</a>
   <button class="icon-btn menu" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">☰</button>
   <nav id="nav" aria-label="Principal">
-    <a href="#ruta">Tu ruta</a>
     <a href="#cursos">Cursos</a>
-    <a href="#autor">Autor</a>
+    <a href="#plataforma">Cómo aprendes</a>
+    <a href="#ruta">Tu ruta</a>
+    <a href="#faq">Preguntas</a>
     <a href="#contacto">Contacto</a>
     <button class="icon-btn" id="theme" aria-label="Cambiar tema claro/oscuro">◐</button>
   </nav>
@@ -37,65 +38,91 @@
 <main id="main">
   <!-- HERO -->
   <section class="hero" id="inicio">
-    <p class="tag">// gratis · sin registro · en español</p>
-    <h1>Informática que se aprende <em>con las manos.</em></h1>
-    <p class="lead">Reparación, web, seguridad y video. Cursos hechos por un autodidacta, con videos, PDFs y diagramas. Sin relleno, sin costo.</p>
-    <div class="cta">
-      <a class="btn primary" href="#cursos">Ver cursos</a>
-      <a class="btn" href="#ruta">Armar mi ruta</a>
+    <div class="hero-text">
+      <p class="badge">100% gratis · sin registro</p>
+      <h1>Aprende informática desde cero, a tu ritmo y sin pagar.</h1>
+      <p class="lead">Reparación de equipos, desarrollo web, seguridad y edición de video. Videos, PDFs y diagramas hechos por una sola persona que aprendió por su cuenta.</p>
+      <div class="cta">
+        <a class="btn primary" href="#cursos">Elegir un curso</a>
+        <a class="btn" href="#ruta">Armar mi ruta</a>
+      </div>
     </div>
-    <div class="term glow" role="img" aria-label="Terminal simulada: ju4n learn --gratis">
+    <div class="term" role="img" aria-label="Terminal simulada: ju4n learn --gratis">
       <div class="term-bar"><i></i><i></i><i></i><span>~/ju4nacademy</span></div>
       <pre id="typed" aria-hidden="true"></pre>
       <noscript><pre>$ ju4n learn --gratis</pre></noscript>
     </div>
+  </section>
+
+  <!-- DATOS CLAVE -->
+  <section class="facts" aria-label="Datos clave">
     <dl class="stats">
-      <div><dt>Cursos</dt><dd>7+</dd></div>
-      <div><dt>Costo</dt><dd>$0</dd></div>
-      <div><dt>Acceso</dt><dd>24/7</dd></div>
+      <div><dt>cursos completos</dt><dd>7+</dd></div>
+      <div><dt>costo, siempre</dt><dd>$0</dd></div>
+      <div><dt>acceso al material</dt><dd>24/7</dd></div>
+      <div><dt>formatos: video, PDF y diagramas</dt><dd>3</dd></div>
     </dl>
   </section>
 
-  <!-- PROPUESTA DE VALOR -->
-  <section class="split reveal" aria-labelledby="h-valor">
-    <h2 id="h-valor">Lo que hay.<br>Nada más.</h2>
-    <ol class="list">
-      <li><b>01 Video HD</b><span>Lecciones con ejemplos prácticos, para ver y repetir.</span></li>
-      <li><b>02 PDFs descargables</b><span>Material completo para estudiar a tu ritmo, offline.</span></li>
-      <li><b>03 Diagramas</b><span>Lo difícil, dibujado. Aprendizaje visual.</span></li>
-      <li><b>04 Guía real</b><span>Orientación basada en experiencia autodidacta, no en teoría de manual.</span></li>
-    </ol>
+  <!-- CURSOS -->
+  <section id="cursos" aria-labelledby="h-cursos">
+    <div class="section-head">
+      <h2 id="h-cursos">Escoge un curso</h2>
+      <p class="lead">Todos gratuitos y con material descargable. Empieza por el que más te sirva hoy.</p>
+    </div>
+    <div class="grid" id="grid"></div>
   </section>
 
-  <!-- INTERACTIVO -->
-  <section class="reveal" id="ruta" aria-labelledby="h-ruta">
-    <p class="tag">// interactivo</p>
-    <h2 id="h-ruta">¿Qué quieres lograr?</h2>
+  <!-- CÓMO APRENDES -->
+  <section id="plataforma" aria-labelledby="h-plat">
+    <div class="section-head">
+      <h2 id="h-plat">Todo el material en un solo lugar</h2>
+      <p class="lead">Sin teoría de relleno: cada lección parte de algo que puedes hacer.</p>
+    </div>
+    <ul class="features">
+      <li><h3>Mira y repite</h3><p>Lecciones en video HD con ejemplos prácticos. Pausa, vuelve atrás y practica en tu equipo.</p></li>
+      <li><h3>Llévatelo contigo</h3><p>PDFs descargables y diagramas para estudiar sin conexión y volver a consultar cuando lo necesites.</p></li>
+      <li><h3>Guía basada en experiencia</h3><p>Orientación de alguien que aprendió informática por su cuenta y sabe dónde se traba la gente.</p></li>
+    </ul>
+  </section>
+
+  <!-- RUTA INTERACTIVA -->
+  <section id="ruta" aria-labelledby="h-ruta">
+    <div class="section-head">
+      <h2 id="h-ruta">¿Qué camino es el mejor para ti?</h2>
+      <p class="lead">Elige lo que quieres lograr y te muestro por dónde empezar.</p>
+    </div>
     <div class="chips" role="radiogroup" aria-label="Objetivo"></div>
     <div class="route glow" id="route" aria-live="polite"></div>
   </section>
 
-  <!-- CURSOS -->
-  <section class="reveal" id="cursos" aria-labelledby="h-cursos">
-    <p class="tag">// ls ./cursos</p>
-    <h2 id="h-cursos">Cursos</h2>
-    <div class="grid" id="grid"></div>
+  <!-- AUTOR -->
+  <section class="split" id="autor" aria-labelledby="h-autor">
+    <h2 id="h-autor">Hecho por Juan Bruna</h2>
+    <div>
+      <p>Soy Juan, fundador de ju4nacademy. Aprendí informática por mi cuenta y hoy trabajo en soporte técnico y desarrollo web. Todos los cursos los armo yo, y son gratis.</p>
+      <p class="pills"><span>Reparación</span><span>Optimización</span><span>Desarrollo web</span><span>Seguridad</span><span>Edición de video</span></p>
+      <a class="btn" href="https://ju4nstudio.online" rel="noopener">Ver mi portafolio</a>
+    </div>
   </section>
 
-  <!-- AUTOR -->
-  <section class="split reveal" id="autor" aria-labelledby="h-autor">
-    <h2 id="h-autor">Hecho por<br>alguien que aprendió solo.</h2>
-    <div>
-      <p>Soy Juan, fundador de ju4nacademy. Todo lo que sé de informática lo aprendí por mi cuenta, y ahora lo comparto para que tú llegues más rápido.</p>
-      <p class="pills"><span>Reparación</span><span>Optimización</span><span>Desarrollo web</span><span>Seguridad</span><span>Edición de video</span></p>
-      <a class="btn" href="https://ju4nstudio.online" rel="noopener">Ver mi portafolio →</a>
+  <!-- PREGUNTAS FRECUENTES -->
+  <section id="faq" aria-labelledby="h-faq">
+    <div class="section-head"><h2 id="h-faq">Preguntas frecuentes</h2></div>
+    <div class="faq">
+      <details><summary>¿De verdad es gratis?</summary><p>Sí. Todos los cursos son gratuitos y no se pide tarjeta.</p></details>
+      <details><summary>¿Necesito registrarme?</summary><p>No para ver el material. Entra a la sección de cursos y empieza.</p></details>
+      <details><summary>¿Qué incluye cada curso?</summary><p>Videos en HD con ejemplos prácticos, PDFs descargables y diagramas explicativos.</p></details>
+      <details><summary>¿Cómo hago una pregunta o sugiero un curso?</summary><p>Usa el formulario de más abajo o escríbeme por Instagram. También puedes preguntarle al asistente.</p></details>
     </div>
   </section>
 
   <!-- CONTACTO -->
-  <section class="reveal" id="contacto" aria-labelledby="h-contacto">
-    <p class="tag">// contacto</p>
-    <h2 id="h-contacto">Escríbeme.</h2>
+  <section id="contacto" aria-labelledby="h-contacto">
+    <div class="section-head">
+      <h2 id="h-contacto">Escríbeme</h2>
+      <p class="lead">Dudas, sugerencias o soporte. Respondo por Instagram.</p>
+    </div>
     <form class="form glow" id="form" novalidate>
       <label>Nombre
         <input name="nombre" autocomplete="name" required minlength="2" maxlength="60">
@@ -122,15 +149,15 @@
   </section>
 </main>
 
-<footer>
-  <p><b>ju4n</b>/academy · Educación en informática, gratis.</p>
-  <p>© 2026 ju4nacademy</p>
+<footer class="footer">
+  <p><b>ju4nacademy</b> · Educación en informática, gratis.</p>
+  <p>© 2026 Juan Bruna</p>
 </footer>
 
 <!-- MINI-BOT -->
 <div class="bot" id="bot">
   <section class="bot-panel glow" id="bot-panel" role="dialog" aria-label="Asistente de ju4nacademy" hidden>
-    <header><b>asistente.sh</b><button class="icon-btn" id="bot-x" aria-label="Cerrar chat">✕</button></header>
+    <header><b>Asistente</b><button class="icon-btn" id="bot-x" aria-label="Cerrar chat">✕</button></header>
     <div class="bot-log" id="bot-log" aria-live="polite"></div>
     <div class="bot-quick" id="bot-quick"></div>
     <form id="bot-form" autocomplete="off">
@@ -138,7 +165,7 @@
       <button class="btn primary" aria-label="Enviar">→</button>
     </form>
   </section>
-  <button class="bot-fab" id="bot-fab" aria-expanded="false" aria-controls="bot-panel" aria-label="Abrir asistente">&gt;_</button>
+  <button class="bot-fab" id="bot-fab" aria-expanded="false" aria-controls="bot-panel" aria-label="Abrir asistente">?</button>
 </div>
 
 <script src="app.js" defer></script>
