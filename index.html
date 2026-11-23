@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="styles.css">
+<!-- 👇 AGREGADO: ESTILOS DE AUTENTICACIÓN 👇 -->
+<link rel="stylesheet" href="auth.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ju4nacademy","url":"https://ju4nacademy.online/","founder":{"@type":"Person","name":"Juan Bruna"},"isAccessibleForFree":true}</script>
 </head>
 <body>
@@ -32,6 +34,19 @@
     <a href="#faq">Preguntas</a>
     <a href="#contacto">Contacto</a>
     <button class="icon-btn" id="theme" aria-label="Cambiar tema claro/oscuro">◐</button>
+    
+    <!-- 👇 AGREGADO: BOTONES DE LOGIN / LOGOUT 👇 -->
+    <div class="auth-zone" id="auth-guest">
+      <button class="btn-auth" id="btn-open-login">Iniciar sesión</button>
+      <button class="btn-auth primary" id="btn-open-registro">Crear cuenta</button>
+    </div>
+    <div class="auth-user" id="auth-user" hidden>
+      <span class="avatar" id="auth-user-avatar">?</span>
+      <span id="auth-user-name">Usuario</span>
+      <button class="btn-auth" id="btn-logout">Salir</button>
+    </div>
+    <!-- 👆 FIN DE BOTONES DE LOGIN 👆 -->
+
   </nav>
 </header>
 
@@ -39,7 +54,8 @@
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-text">
-      <p class="badge">100% gratis · sin registro</p>
+      <!-- 👇 MODIFICADO: texto de "sin registro" a "crea tu cuenta" 👇 -->
+      <p class="badge">100% gratis · crea tu cuenta para guardar progreso</p>
       <h1>Aprende informática desde cero, a tu ritmo y sin pagar.</h1>
       <p class="lead">Reparación de equipos, desarrollo web, seguridad y edición de video. Videos, PDFs y diagramas hechos por una sola persona que aprendió por su cuenta.</p>
       <div class="cta">
@@ -111,7 +127,8 @@
     <div class="section-head"><h2 id="h-faq">Preguntas frecuentes</h2></div>
     <div class="faq">
       <details><summary>¿De verdad es gratis?</summary><p>Sí. Todos los cursos son gratuitos y no se pide tarjeta.</p></details>
-      <details><summary>¿Necesito registrarme?</summary><p>No para ver el material. Entra a la sección de cursos y empieza.</p></details>
+      <!-- 👇 MODIFICADO: respuesta sobre registro 👇 -->
+      <details><summary>¿Necesito registrarme?</summary><p>No es obligatorio para ver el material. Pero si creas una cuenta gratis puedes guardar tu progreso y acceder a funciones extra.</p></details>
       <details><summary>¿Qué incluye cada curso?</summary><p>Videos en HD con ejemplos prácticos, PDFs descargables y diagramas explicativos.</p></details>
       <details><summary>¿Cómo hago una pregunta o sugiero un curso?</summary><p>Usa el formulario de más abajo o escríbeme por Instagram. También puedes preguntarle al asistente.</p></details>
     </div>
@@ -167,7 +184,32 @@
   </section>
   <button class="bot-fab" id="bot-fab" aria-expanded="false" aria-controls="bot-panel" aria-label="Abrir asistente">?</button>
 </div>
-
 <script src="app.js" defer></script>
+
+<!-- MODAL DE LOGIN Y REGISTRO -->
+<div class="auth-modal" id="auth-modal" hidden>
+  <div class="auth-card glow" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+    <button class="auth-close" id="auth-close" aria-label="Cerrar">✕</button>
+    <h3 id="auth-title">Iniciar sesión</h3>
+    <form id="auth-form" novalidate>
+      <label>Email
+        <input id="auth-email" type="email" autocomplete="email" required>
+      </label>
+      <label>Contraseña
+        <input id="auth-pass" type="password" autocomplete="current-password" required minlength="6">
+      </label>
+      <button class="btn-submit" id="auth-submit" type="submit">Entrar</button>
+      <p class="auth-msg" id="auth-msg" role="status" aria-live="polite"></p>
+      <p class="auth-switch">
+        <span id="auth-switch-text">¿Sin cuenta?</span>
+        <a id="auth-switch-btn" role="button" tabindex="0">Crear una</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- SCRIPT DE FIREBASE AUTH -->
+<script type="module" src="auth.js"></script>
+  
 </body>
 </html>
