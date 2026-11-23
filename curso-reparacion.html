@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diagnóstico y Reparación de PC · ju4nacademy</title>
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="imagenes/academyju4n.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+    
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="auth.css" />
+
+    <!-- Estilos específicos para la página del curso -->
+    <style>
+        .curso-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 120px auto 80px;
+            padding: 0 5%;
+        }
+
+        @media (max-width: 900px) {
+            .curso-layout { grid-template-columns: 1fr; }
+        }
+
+        /* Reproductor de Video */
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Info del Curso */
+        .curso-info h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .curso-info p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Lista de Lecciones */
+        .lecciones-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .leccion-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        [data-theme="light"] .leccion-item {
+            background: #f9f9fb;
+            border-color: rgba(0,0,0,0.1);
+        }
+
+        .leccion-item:hover {
+            background: rgba(59, 76, 240, 0.1);
+            border-color: #3b4cf0;
+        }
+
+        .leccion-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: #3b4cf0;
+            background: rgba(59, 76, 240, 0.1);
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+
+        .leccion-title {
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        /* Sidebar de Recursos */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            align-self: start;
+        }
+
+        .recurso-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        [data-theme="light"] .recurso-card {
+            background: #fff;
+            border-color: rgba(0,0,0,0.1);
+        }
+
+        .recurso-card h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #3b4cf0;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            transition: background 0.2s, transform 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        .btn-download:hover {
+            background: #4f5ef5;
+            transform: translateY(-2px);
+        }
+
+        .btn-download.secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: inherit;
+        }
+
+        [data-theme="light"] .btn-download.secondary {
+            border-color: rgba(0,0,0,0.2);
+        }
+
+        .btn-download.secondary:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* Botón de progreso */
+        .btn-completar {
+            width: 100%;
+            padding: 1rem;
+            background: transparent;
+            border: 2px solid #4ade80;
+            color: #4ade80;
+            border-radius: 8px;
+            font-weight: 700;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .btn-completar:hover {
+            background: #4ade80;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <a class="skip" href="#main">Saltar al contenido</a>
+
+    <!-- HEADER UNIFICADO -->
+    <header class="top">
+        <a class="logo" href="index.html" aria-label="ju4nacademy, inicio"><span>ju4n</span>academy</a>
+        <button class="icon-btn menu" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">☰</button>
+        <nav id="nav" aria-label="Principal">
+            <a href="index.html">Inicio</a>
+            <a href="cursos.html" class="active">Cursos</a>
+            <a href="index.html#plataforma">Cómo aprendes</a>
+            <a href="index.html#contacto">Contacto</a>
+            <button class="icon-btn" id="theme" aria-label="Cambiar tema claro/oscuro">◐</button>
+            
+            <div class="auth-zone" id="auth-guest">
+                <button class="btn-auth" id="btn-open-login">Iniciar sesión</button>
+                <button class="btn-auth primary" id="btn-open-registro">Crear cuenta</button>
+            </div>
+            <div class="auth-user" id="auth-user" hidden>
+                <span class="avatar" id="auth-user-avatar">?</span>
+                <span id="auth-user-name">Usuario</span>
+                <button class="btn-logout" id="btn-logout">Salir</button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <div class="curso-layout">
+            
+            <!-- COLUMNA IZQUIERDA (VIDEO Y LECCIONES) -->
+            <div class="curso-main">
+                
+                <!-- Reproductor (Reemplaza el ID del video por el tuyo) -->
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Reproductor de video" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="curso-info">
+                    <span style="font-family:'JetBrains Mono'; color:#3b4cf0; font-size:0.9rem; font-weight:700;">CURSO COMPLETO</span>
+                    <h1>Diagnóstico y Reparación de PC</h1>
+                    <p>Aprende desde cero a diagnosticar fallos, cambiar componentes y optimizar el rendimiento de cualquier computadora. Este curso está diseñado para que pases de la teoría a la práctica de inmediato.</p>
+                    
+                    <h2 style="font-family:'Bricolage Grotesque'; margin-top:2rem; margin-bottom:1rem;">Contenido del curso</h2>
+                    <div class="lecciones-list">
+                        <div class="leccion-item"><span class="leccion-num">01</span><span class="leccion-title">Introducción al hardware</span></div>
+                        <div class="leccion-item"><span class="leccion-num">02</span><span class="leccion-title">Herramientas esenciales del técnico</span></div>
+                        <div class="leccion-item"><span class="leccion-num">03</span><span class="leccion-title">Desarmado seguro de una PC</span></div>
+                        <div class="leccion-item"><span class="leccion-num">04</span><span class="leccion-title">Diagnóstico de fuente de poder</span></div>
+                        <div class="leccion-item"><span class="leccion-num">05</span><span class="leccion-title">Limpieza y mantenimiento preventivo</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA (RECURSOS Y PROGRESO) -->
+            <div class="sidebar">
+                
+                <!-- Tarjeta de Recursos PDF -->
+                <div class="recurso-card glow">
+                    <h3>📄 Recursos del curso</h3>
+                    <p style="font-size:0.85rem; opacity:0.7; margin-bottom:1rem;">Descarga el material de apoyo para seguir las lecciones.</p>
+                    
+                    <!-- BOTÓN PDF 1 -->
+                    <a href="pdfs/guia-reparacion-pc.pdf" download class="btn-download">
+                        <span>📘 Guía completa (PDF)</span>
+                        <span>⬇️</span>
+                    </a>
+
+                    <!-- BOTÓN PDF 2 -->
+                    <a href="pdfs/diagrama-motherboard.pdf" download class="btn-download secondary">
+                        <span>📐 Diagrama de Motherboard</span>
+                        <span>⬇️</span>
+                    </a>
+                </div>
+
+                <!-- Tarjeta de Progreso -->
+                <div class="recurso-card glow">
+                    <h3>Tu progreso</h3>
+                    <p style="font-size:0.85rem; opacity:0.7; margin-bottom:1rem;">Guarda tu avance en este curso con tu cuenta.</p>
+                    <button class="btn-completar" onclick="guardarCursoCompletado('reparacion-pc')">
+                        ✓ Marcar curso como completado
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p><b>ju4nacademy</b> · Educación en informática, gratis.</p>
+        <p>© 2026 Juan Bruna</p>
+    </footer>
+
+    <!-- MODAL DE LOGIN -->
+    <div class="auth-modal" id="auth-modal" hidden>
+        <div class="auth-card glow" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+            <button class="auth-close" id="auth-close" aria-label="Cerrar">✕</button>
+            <h3 id="auth-title">Iniciar sesión</h3>
+            <form id="auth-form" novalidate>
+                <label>Email
+                    <input id="auth-email" type="email" autocomplete="email" required>
+                </label>
+                <label>Contraseña
+                    <input id="auth-pass" type="password" autocomplete="current-password" required minlength="6">
+                </label>
+                <button class="btn-submit" id="auth-submit" type="submit">Entrar</button>
+                <p class="auth-msg" id="auth-msg" role="status" aria-live="polite"></p>
+                <p class="auth-switch">
+                    <span id="auth-switch-text">¿Sin cuenta?</span>
+                    <a id="auth-switch-btn" role="button" tabindex="0">Crear una</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script de Auth -->
+    <script type="module" src="auth.js"></script>
+    
+    <script>
+        // Función para conectar el botón de "Completado" con tu Firebase
+        window.guardarCursoCompletado = async function(idCurso) {
+            if (typeof window.guardarProgreso === "function") {
+                await window.guardarProgreso(idCurso);
+                alert("¡Progreso guardado! Si cierras sesión y vuelves a entrar, seguirá aquí.");
+            } else {
+                alert("Inicia sesión para guardar tu progreso.");
+            }
+        };
+    </script>
+</body>
+</html>
