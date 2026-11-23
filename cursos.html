@@ -1,298 +1,264 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ju4nacademy · Todos los cursos</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="imagenes/academyju4n.png" />
-    <link rel="apple-touch-icon" href="imagenes/academyju4n.png" />
-    
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+    
+    <!-- Usamos el mismo CSS de tu index y el nuevo auth.css -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="auth.css" />
+
+    <!-- Estilos extras solo para esta página de cursos -->
+    <style>
+        .cursos-hero {
+            padding: 120px 5% 60px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .cursos-hero h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
+        }
+        .cursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 5% 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .curso-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        [data-theme="light"] .curso-card {
+            background: #fff;
+            border-color: rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .curso-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 76, 240, 0.15);
+        }
+        .curso-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .curso-body {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .curso-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #3b4cf0;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .curso-body h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+        .curso-body p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        .curso-meta {
+            display: flex;
+            gap: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            opacity: 0.6;
+            margin-bottom: 1.5rem;
+        }
+        .curso-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+        }
+        [data-theme="light"] .curso-footer {
+            border-color: rgba(0,0,0,0.1);
+        }
+        .btn-curso {
+            background: #3b4cf0;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-curso:hover {
+            background: #4f5ef5;
+        }
+    </style>
 </head>
 <body>
+    <a class="skip" href="#main">Saltar al contenido</a>
 
-    <!-- ===== NAVBAR ===== -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img" />
-                    ju4nacademy
-                </a>
-                <div class="nav-links">
-                    <a href="index.html">Inicio</a>
-                    <a href="cursos.html" class="active">Cursos</a>
-                    <a href="about.html">Acerca de</a>
-                    <a href="contact.html">Contacto</a>
-                    <button class="btn-login" onclick="window.location.href='contact.html'">Iniciar sesión</button>
-                </div>
-                <button class="menu-toggle" id="menuToggle">☰</button>
-            </nav>
-        </div>
+    <!-- Header idéntico a tu index -->
+    <header class="top">
+        <a class="logo" href="index.html" aria-label="ju4nacademy, inicio"><span>ju4n</span>academy</a>
+        <button class="icon-btn menu" aria-expanded="false" aria-controls="nav" aria-label="Abrir menú">☰</button>
+        <nav id="nav" aria-label="Principal">
+            <a href="index.html">Inicio</a>
+            <a href="cursos.html">Cursos</a>
+            <a href="index.html#plataforma">Cómo aprendes</a>
+            <a href="index.html#contacto">Contacto</a>
+            <button class="icon-btn" id="theme" aria-label="Cambiar tema claro/oscuro">◐</button>
+            
+            <div class="auth-zone" id="auth-guest">
+                <button class="btn-auth" id="btn-open-login">Iniciar sesión</button>
+                <button class="btn-auth primary" id="btn-open-registro">Crear cuenta</button>
+            </div>
+            <div class="auth-user" id="auth-user" hidden>
+                <span class="avatar" id="auth-user-avatar">?</span>
+                <span id="auth-user-name">Usuario</span>
+                <button class="btn-logout" id="btn-logout">Salir</button>
+            </div>
+        </nav>
     </header>
 
-    <main>
+    <main id="main">
+        <!-- Hero simple -->
+        <section class="cursos-hero">
+            <p class="badge">100% gratis · Acceso ilimitado</p>
+            <h1>Todos los <span style="color:#3b4cf0;">cursos</span></h1>
+            <p class="lead">Aprende informática desde cero con material descargable, videos y ejercicios prácticos. Todo gratis y para siempre.</p>
+        </section>
 
-        <!-- ===== HERO CURSOS ===== -->
-        <section class="page-hero">
-            <div class="container">
-                <div class="page-hero-content">
-                    <span class="hero-badge">📚 +7 cursos</span>
-                    <h1 class="page-title">Todos los <span class="gradient-text">cursos</span></h1>
-                    <p class="page-subtitle">Aprende informática desde cero con material descargable, videos y ejercicios prácticos. Todo completamente <strong>gratis</strong>.</p>
-                    <div class="page-hero-filters">
-                        <button class="filter-btn active" data-filter="all">Todos</button>
-                        <button class="filter-btn" data-filter="reparacion">🔧 Reparación</button>
-                        <button class="filter-btn" data-filter="desarrollo">💻 Desarrollo</button>
-                        <button class="filter-btn" data-filter="seguridad">🔒 Seguridad</button>
-                        <button class="filter-btn" data-filter="ofimatica">📊 Ofimática</button>
+        <!-- Grid de cursos -->
+        <section class="cursos-grid">
+            
+            <!-- Curso 1 -->
+            <div class="curso-card">
+                <img src="https://images.unsplash.com/photo-1531498860503-7c67cf02f657?w=600&h=400&fit=crop" alt="Reparación" class="curso-img">
+                <div class="curso-body">
+                    <span class="curso-tag">🔧 Reparación</span>
+                    <h3>Diagnóstico y reparación de PC</h3>
+                    <p>Aprende a diagnosticar fallos, cambiar componentes y optimizar el rendimiento.</p>
+                    <div class="curso-meta">
+                        <span>📹 18 lecciones</span>
+                        <span>📄 PDF incluido</span>
+                    </div>
+                    <div class="curso-footer">
+                        <span style="font-size:0.8rem; opacity:0.7;">⭐ Principiante</span>
+                        <a href="curso-reparacion.html" class="btn-curso">Ver curso</a>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- ===== LISTA DE CURSOS ===== -->
-        <section class="courses-page">
-            <div class="container">
-                <div class="courses-grid" id="coursesGrid">
-                    <!-- Curso 1 -->
-                    <div class="course-card" data-category="reparacion">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1531498860503-7c67cf02f657?w=600&h=400&fit=crop" alt="Reparación de PC" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">🔧 Reparación</span>
-                            <h3>Diagnóstico y reparación de PC</h3>
-                            <p>Aprende a diagnosticar fallos, cambiar componentes y optimizar el rendimiento de tu computadora.</p>
-                            <div class="card-meta">
-                                <span>📹 18 lecciones</span>
-                                <span>📄 PDF incluido</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Principiante</span>
-                                <button class="btn-small" onclick="window.location.href='curso-reparacion.html'">Ver curso</button>
-                            </div>
-                        </div>
+            <!-- Curso 2 -->
+            <div class="curso-card">
+                <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop" alt="Desarrollo Web" class="curso-img">
+                <div class="curso-body">
+                    <span class="curso-tag">💻 Desarrollo</span>
+                    <h3>Desarrollo Web desde cero</h3>
+                    <p>HTML, CSS y JavaScript. Crea tu primera página web responsive.</p>
+                    <div class="curso-meta">
+                        <span>📹 22 lecciones</span>
+                        <span>📄 PDF + ejercicios</span>
                     </div>
-
-                    <!-- Curso 2 -->
-                    <div class="course-card" data-category="desarrollo">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&h=400&fit=crop" alt="Desarrollo Web" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">💻 Desarrollo</span>
-                            <h3>Desarrollo Web desde cero</h3>
-                            <p>HTML, CSS y JavaScript. Crea tu primera página web responsive con ejemplos prácticos.</p>
-                            <div class="card-meta">
-                                <span>📹 22 lecciones</span>
-                                <span>📄 PDF + ejercicios</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Principiante</span>
-                                <button class="btn-small" onclick="window.location.href='curso-web.html'">Ver curso</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Curso 3 -->
-                    <div class="course-card" data-category="seguridad">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop" alt="Seguridad Informática" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">🔒 Seguridad</span>
-                            <h3>Seguridad Informática básica</h3>
-                            <p>Protege tus datos, evita phishing, crea contraseñas seguras y navega de forma anónima.</p>
-                            <div class="card-meta">
-                                <span>📹 14 lecciones</span>
-                                <span>📄 Guía de seguridad</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Principiante</span>
-                                <button class="btn-small" onclick="window.location.href='curso-seguridad.html'">Ver curso</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Curso 4 -->
-                    <div class="course-card" data-category="ofimatica">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop" alt="Excel Avanzado" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">📊 Ofimática</span>
-                            <h3>Excel avanzado para empresas</h3>
-                            <p>Fórmulas avanzadas, tablas dinámicas, macros y análisis de datos profesionales.</p>
-                            <div class="card-meta">
-                                <span>📹 20 lecciones</span>
-                                <span>📄 Ejercicios prácticos</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Intermedio</span>
-                                <button class="btn-small" onclick="window.location.href='curso-excel.html'">Ver curso</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Curso 5 -->
-                    <div class="course-card" data-category="reparacion">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=600&h=400&fit=crop" alt="Redes" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">🔧 Redes</span>
-                            <h3>Redes y conectividad</h3>
-                            <p>Configura routers, switches, soluciona problemas de red y entiende el modelo OSI.</p>
-                            <div class="card-meta">
-                                <span>📹 15 lecciones</span>
-                                <span>📄 Diagramas incluidos</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Intermedio</span>
-                                <button class="btn-small" onclick="window.location.href='curso-redes.html'">Ver curso</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Curso 6 -->
-                    <div class="course-card" data-category="desarrollo">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1581276879432-15e05a6b0fd0?w=600&h=400&fit=crop" alt="Git y GitHub" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">💻 Desarrollo</span>
-                            <h3>Git y GitHub desde cero</h3>
-                            <p>Aprende control de versiones, colabora en equipo y publica tus proyectos open source.</p>
-                            <div class="card-meta">
-                                <span>📹 12 lecciones</span>
-                                <span>📄 Guía rápida</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Principiante</span>
-                                <button class="btn-small" onclick="window.location.href='curso-git.html'">Ver curso</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Curso 7 -->
-                    <div class="course-card" data-category="seguridad">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=600&h=400&fit=crop" alt="Ciberseguridad" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">🔒 Seguridad</span>
-                            <h3>Privacidad y anonimato en línea</h3>
-                            <p>VPN, Tor, navegación privada y protección contra el rastreo en internet.</p>
-                            <div class="card-meta">
-                                <span>📹 10 lecciones</span>
-                                <span>📄 Checklist de seguridad</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Intermedio</span>
-                                <button class="btn-small" onclick="window.location.href='curso-privacidad.html'">Ver curso</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Curso 8 -->
-                    <div class="course-card" data-category="ofimatica">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&h=400&fit=crop" alt="Office" />
-                            <span class="card-badge">Gratis</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">📊 Ofimática</span>
-                            <h3>Word y PowerPoint profesional</h3>
-                            <p>Documentos impecables, presentaciones impactantes y trucos de productividad.</p>
-                            <div class="card-meta">
-                                <span>📹 16 lecciones</span>
-                                <span>📄 Plantillas incluidas</span>
-                            </div>
-                            <div class="card-footer">
-                                <span class="card-level">⭐ Principiante</span>
-                                <button class="btn-small" onclick="window.location.href='curso-office.html'">Ver curso</button>
-                            </div>
-                        </div>
+                    <div class="curso-footer">
+                        <span style="font-size:0.8rem; opacity:0.7;">⭐ Principiante</span>
+                        <a href="curso-web.html" class="btn-curso">Ver curso</a>
                     </div>
                 </div>
             </div>
-        </section>
 
+            <!-- Curso 3 -->
+            <div class="curso-card">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&h=400&fit=crop" alt="Seguridad" class="curso-img">
+                <div class="curso-body">
+                    <span class="curso-tag">🔒 Seguridad</span>
+                    <h3>Seguridad Informática básica</h3>
+                    <p>Protege tus datos, evita phishing y navega de forma segura.</p>
+                    <div class="curso-meta">
+                        <span>📹 14 lecciones</span>
+                        <span>📄 Guía de seguridad</span>
+                    </div>
+                    <div class="curso-footer">
+                        <span style="font-size:0.8rem; opacity:0.7;">⭐ Principiante</span>
+                        <a href="curso-seguridad.html" class="btn-curso">Ver curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 4 -->
+            <div class="curso-card">
+                <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop" alt="Excel" class="curso-img">
+                <div class="curso-body">
+                    <span class="curso-tag">📊 Ofimática</span>
+                    <h3>Excel avanzado para empresas</h3>
+                    <p>Fórmulas avanzadas, tablas dinámicas, macros y análisis de datos.</p>
+                    <div class="curso-meta">
+                        <span>📹 20 lecciones</span>
+                        <span>📄 Ejercicios prácticos</span>
+                    </div>
+                    <div class="curso-footer">
+                        <span style="font-size:0.8rem; opacity:0.7;">⭐ Intermedio</span>
+                        <a href="curso-excel.html" class="btn-curso">Ver curso</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </main>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="index.html" class="logo">
-                        <img src="imagenes/academyju4n.png" alt="ju4nacademy" class="logo-img" />
-                        ju4nacademy
-                    </a>
-                    <p>Educación en informática para todos, completamente gratis.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4>Navegación</h4>
-                        <a href="index.html">Inicio</a>
-                        <a href="cursos.html">Cursos</a>
-                        <a href="about.html">Acerca de</a>
-                        <a href="contact.html">Contacto</a>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Recursos</h4>
-                        <a href="https://ju4nstudio.online" target="_blank">CV Personal</a>
-                        <a href="#">Políticas de uso</a>
-                        <a href="#">Preguntas frecuentes</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© Copyright ju4nacademy 2026 · Todos los cursos son gratuitos</span>
-            </div>
-        </div>
+        <p><b>ju4nacademy</b> · Educación en informática, gratis.</p>
+        <p>© 2026 Juan Bruna</p>
     </footer>
 
-    <script>
-        // ===== MENU TOGGLE =====
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('open');
-        });
+    <!-- Modal de Auth (Igual que en el index) -->
+    <div class="auth-modal" id="auth-modal" hidden>
+        <div class="auth-card glow" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+            <button class="auth-close" id="auth-close" aria-label="Cerrar">✕</button>
+            <h3 id="auth-title">Iniciar sesión</h3>
+            <form id="auth-form" novalidate>
+                <label>Email
+                    <input id="auth-email" type="email" autocomplete="email" required>
+                </label>
+                <label>Contraseña
+                    <input id="auth-pass" type="password" autocomplete="current-password" required minlength="6">
+                </label>
+                <button class="btn-submit" id="auth-submit" type="submit">Entrar</button>
+                <p class="auth-msg" id="auth-msg" role="status" aria-live="polite"></p>
+                <p class="auth-switch">
+                    <span id="auth-switch-text">¿Sin cuenta?</span>
+                    <a id="auth-switch-btn" role="button" tabindex="0">Crear una</a>
+                </p>
+            </form>
+        </div>
+    </div>
 
-        // ===== FILTROS DE CURSOS =====
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Quitar clase activa de todos los botones
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-
-                const filter = this.dataset.filter;
-                const cards = document.querySelectorAll('.course-card');
-
-                cards.forEach(card => {
-                    if (filter === 'all') {
-                        card.style.display = 'block';
-                    } else {
-                        const category = card.dataset.category;
-                        card.style.display = category === filter ? 'block' : 'none';
-                    }
-                });
-            });
-        });
-    </script>
-
+    <!-- Scripts -->
+    <script type="module" src="auth.js"></script>
+    <script src="app.js" defer></script>
 </body>
 </html>
